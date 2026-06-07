@@ -19,7 +19,7 @@ def typing_print(text, delay=0.01):
 
 def matrix_effect(duration=3):
     start_time = time.time()
-    os.system('color 0a')
+    os.system("color 0a")
     while time.time() - start_time < duration:
         line = "".join(random.choice(["0", "1", " ", "X", "Y", "8", "$", "A", "B", "M"]) for _ in range(80))
         print(line)
@@ -37,9 +37,9 @@ def progress_bar(task_name, duration=2):
     print("\n[+] SUCCESS\n")
 
 def main():
-    os.system('mode con cols=100 lines=30')
-    os.system('color 0a')
-    set_title("🌐 POTI-ENGINE CORE SYSTEM v0.8.1")
+    os.system("mode con cols=100 lines=30")
+    os.system("color 0a")
+    set_title("🌐 POTI-ENGINE CORE SYSTEM v1.0")
 
     logo = """
     ==================================================================
@@ -64,7 +64,7 @@ def main():
     time.sleep(1)
     matrix_effect(4)
 
-    os.system('cls')
+    os.system("cls")
     print(logo)
     typing_print("\n>>> TERMINAL GRANTED. ENTER COMMAND (type 'help' for options)\n", 0.02)
 
@@ -88,12 +88,12 @@ def main():
             print(f"[+] Scan complete. 0day vulnerability discovered on {target}.\n")
         elif cmd == "inject":
             progress_bar("OVERFLOWING MEMORY BUFFER", 4)
-            os.system('color 0c')
+            os.system("color 0c")
             typing_print("[*] CRITICAL WARNING: ROOT PRIVILEGES UNLOCKED.", 0.05)
             time.sleep(1)
-            os.system('color 0a')
+            os.system("color 0a")
         elif cmd == "clear":
-            os.system('cls')
+            os.system("cls")
             print(logo)
         elif cmd == "exit":
             typing_print("[*] Clearing logs and wiping tracks...", 0.03)
