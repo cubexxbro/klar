@@ -5,6 +5,15 @@ import random
 import ctypes
 import webbrowser
 
+LOGO_TEXT = r"""
+██╗  ██╗██╗      █████╗ ██████╗     ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗ 
+██║ ██╔╝██║     ██╔══██╗██╔══██╗    ██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██╔══██╗
+█████╔╝ ██║     ███████║██████╔╝    ███████║███████║██║     ███████║█████╗  ██████╔╝
+██╔═██╗ ██║     ██╔══██║██╔══██╗    ██╔══██║██╔══██║██║     ██╔══██║██╔══╝  ██╔══██╗
+██║  ██╗███████╗██║  ██║██║  ██║    ██║  ██║██║  ██║╚██████╗██║  ██║███████╗██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+"""
+
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -13,44 +22,69 @@ def set_title(title):
         ctypes.windll.kernel32.SetConsoleTitleW(title)
 
 def show_logo():
-    print(r"""
-==========================================================================================
-██╗  ██╗██╗      █████╗ ██████╗     ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗ 
-██║ ██╔╝██║     ██╔══██╗██╔══██╗    ██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██╔══██╗
-█████╔╝ ██║     ███████║██████╔╝    ███████║███████║██║     ███████║█████╗  ██████╔╝
-██╔═██╗ ██║     ██╔══██║██╔══██╗    ██╔══██║██╔══██║██║     ██╔══██║██╔══╝  ██╔══██╗
-██║  ██╗███████╗██║  ██║██║  ██║    ██║  ██║██║  ██║╚██████╗██║  ██║███████╗██║  ██║
-╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-==========================================================================================
-    """)
+    print(f"\033[32m{LOGO_TEXT}\033[0m")
 
-def matrix_rain():
+def system_collapse():
     clear()
+    for _ in range(50):
+        os.system("color 4f")
+        sys.stdout.write("SYSTEM_CORRUPTED!" * 5 + "\n")
+        time.sleep(0.04)
+        os.system("color 07")
+        sys.stdout.write("DEATH_SEQUENCE_INIT!" * 5 + "\n")
+        time.sleep(0.04)
+    os.system("color 0a")
+
+def animate_logo():
+    clear()
+    colors = ['\033[31m', '\033[32m', '\033[36m', '\033[37m']
     try:
-        colors = ['\033[32m', '\033[1;32m', '\033[36m']
-        while True:
-            row = "".join(random.choice("018$#@!%&") for _ in range(80))
-            sys.stdout.write(f"{random.choice(colors)}{row}\033[0m\n")
+        for _ in range(40):
+            clear()
+            color = random.choice(colors)
+            shift = " " * random.randint(0, 8)
+            print(f"{color}")
+            for line in LOGO_TEXT.split('\n'):
+                print(shift + line)
             sys.stdout.flush()
+            time.sleep(0.04)
+        os.system("color 0a")
     except KeyboardInterrupt: pass
 
-def binary_stream():
+def matrix_storm():
+    clear()
+    try:
+        colors = ['\033[1;32m', '\033[32m', '\033[0;32m', '\033[1;37m']
+        while True:
+            line = "".join([random.choice("018$#@!%&") if random.random() > 0.3 else " " for _ in range(80)])
+            sys.stdout.write(f"{random.choice(colors)}{line}\033[0m\n")
+            sys.stdout.flush()
+            time.sleep(0.005)
+    except KeyboardInterrupt: pass
+
+def exploit_sequence():
+    clear()
+    steps = ["INITIALIZING BUFFER OVERFLOW...", "INJECTING MALICIOUS PAYLOAD...", "BYPASSING KERNEL MEMORY PROTECTION...", "ESTABLISHING ROOT ACCESS...", "EXFILTRATING DATA STREAMS...", "WIPING SYSTEM LOGS..."]
+    for step in steps:
+        print(f"\033[31m[!] {step}\033[0m")
+        time.sleep(0.5)
+        for _ in range(5):
+            print(f"0x{random.randint(1000000, 9999999):X} : {random.choice(['ACCESS_GRANTED', 'ACCESS_DENIED', 'FAIL'])}")
+            time.sleep(0.05)
+    print("\n\033[1;32m[+] SYSTEM COMPROMISED.\033[0m")
+    input("\nPRESS ENTER TO CONTINUE.")
+
+def connection_test():
     clear()
     try:
         while True:
-            row = "".join(random.choice("01 ") for _ in range(80))
-            sys.stdout.write(f"\033[1;37m{row}\033[0m\n")
+            target = f"{random.randint(10,250)}.{random.randint(10,250)}.{random.randint(1,250)}"
+            latency = random.randint(1, 999)
+            color = "\033[32m" if latency < 300 else "\033[33m"
+            print(f"{color}[PING] {target} | LATENCY: {latency}ms | PACKET: {'#'*int(latency/50)}\033[0m")
             sys.stdout.flush()
+            time.sleep(0.05)
     except KeyboardInterrupt: pass
-
-def hex_dump():
-    clear()
-    while True:
-        chunk = " ".join([f"{random.randint(0, 255):02X}" for _ in range(16)])
-        addr = f"0x{random.randint(0x1000, 0xFFFF):04X}"
-        sys.stdout.write(f"\033[33m{addr}: {chunk}\033[0m\n")
-        sys.stdout.flush()
-        time.sleep(0.01)
 
 def decrypt_sim():
     clear()
@@ -73,15 +107,6 @@ def firewall_breach():
         time.sleep(0.2)
     print("\033[1;31m[!] FIREWALL CRITICAL FAILURE\033[0m")
     time.sleep(1)
-
-def packet_sniffer():
-    clear()
-    while True:
-        ip = f"{random.randint(1,254)}.{random.randint(1,254)}"
-        port = random.randint(80, 9000)
-        sys.stdout.write(f"\033[35m[CAPTURE] SRC: {ip} -> DST: LOCAL | PORT: {port} | STATUS: ALLOWED\033[0m\n")
-        sys.stdout.flush()
-        time.sleep(0.03)
 
 def system_overheat():
     clear()
@@ -108,30 +133,33 @@ def open_repo():
     time.sleep(1)
 
 def main():
-    set_title("KLAR HACKER TERMINAL - v2.2-PRO")
+    set_title("KLAR HACKER TERMINAL - v3.0-TERROR")
     os.system("color 0a")
     while True:
         clear()
         show_logo()
-        print("    SYSTEM STATUS: [CONNECTED] | USER: ROOT | VERSION: 2.2-PRO")
+        print("    SYSTEM STATUS: [CONNECTED] | USER: ROOT | VERSION: 3.0-TERROR")
         print("    ----------------------------------------------------------")
-        print("    [1] MATRIX RAIN       [6] PACKET SNIFFER")
-        print("    [2] BINARY STREAM     [7] SYSTEM OVERHEAT")
-        print("    [3] HEX MEMORY DUMP   [8] DATA EXTRACTION")
-        print("    [4] DECRYPT SIM       [9] OPEN REPOSITORY")
-        print("    [5] FIREWALL BREACH   [10] EXIT TERMINAL")
+        print("    [1] MATRIX STORM      [7] SYSTEM OVERHEAT")
+        print("    [2] AUTO EXPLOIT      [8] DATA EXTRACTION")
+        print("    [3] NETWORK PING      [9] OPEN REPOSITORY")
+        print("    [4] DECRYPT SIM       [10] GLITCH ANIMATION")
+        print("    [5] FIREWALL BREACH   [11] SYSTEM COLLAPSE (SCARY)")
+        print("    [6] EXIT TERMINAL     [12] PACKET SNIFFER")
         print("    ----------------------------------------------------------")
-        choice = input("    root@KLAR:~# SELECT OPTION: ").strip()
-        if choice == '1': matrix_rain()
-        elif choice == '2': binary_stream()
-        elif choice == '3': hex_dump()
+        choice = input("    root@KLAR:~# SELECT OPTION [1-12]: ").strip()
+        if choice == '1': matrix_storm()
+        elif choice == '2': exploit_sequence()
+        elif choice == '3': connection_test()
         elif choice == '4': decrypt_sim()
         elif choice == '5': firewall_breach()
-        elif choice == '6': packet_sniffer()
+        elif choice == '6': break
         elif choice == '7': system_overheat()
         elif choice == '8': data_extraction()
         elif choice == '9': open_repo()
-        elif choice == '10': break
+        elif choice == '10': animate_logo()
+        elif choice == '11': system_collapse()
+        elif choice == '12': packet_sniffer = None; clear(); print("REDACTED"); time.sleep(1)
         else: time.sleep(0.5)
 
 if __name__ == "__main__":
